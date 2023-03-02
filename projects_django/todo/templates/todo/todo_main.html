@@ -1,0 +1,23 @@
+<p>Todo: {{ title}}</p>
+
+<h3>New Todo</h3>
+<hr>
+
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit">
+
+</form>
+
+
+<ul>
+    {% for todo in todo %}
+    <p>{{todo.title}}</p>
+    <li>
+        <p>{{ todo.text }}</p>
+    </li>
+    {% empty %}
+    <li>empty just like your...</li>
+    {% endfor %}
+</ul>
