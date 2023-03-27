@@ -1,0 +1,34 @@
+{% extends "learning_logs/base.html" %}
+{% load bootstrap4 %}
+
+{% block content %}
+
+  <h1>You searched for...'{{ searched }}'</h1>
+
+
+  {% if searched %}
+
+  <div class="container-fluid">
+    <div class="row">
+    {% for r in result %}
+        <div class="col-md-6">
+          <div class="card mb-4 box-shadow">
+            <div class="card-body">
+              <h5 class="card-title"> Searched word "{{searched}}"</h5>
+                <p class="card-text">{{ r }}</p>
+                <a href="#" class="btn btn-primary">{{r.topic}}</a>
+            </div>
+
+          </div>
+        </div>
+
+    {% endfor %}
+    </div>
+  </div>
+  {% else %}
+    <h1>You didnt search for anything...</h1>
+  {% endif %}
+
+
+
+{% endblock content %}

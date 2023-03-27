@@ -1,0 +1,42 @@
+{% extends "learning_logs/base.html" %}
+{% load bootstrap4 %}
+
+
+{% block content %}
+<div class="card mb3 bg-light mb-3"style="max-width: 25rem;">
+  <div class="card-header">
+    <h1  class="display-3">Topics
+    <a class="btn btn-primary btn-sm" href="{% url 'learning_logs:new_topic' %}" role="button">New Topic &raquo;</a></h1>
+  </div>
+  <div class="card-body">
+    {% buttons %}
+
+    {% endbuttons %}
+
+    <ul class="list-group">
+
+      {% for topic, user in jip %}
+        <h3 class="lead">
+
+
+          {% buttons %}
+          <a class="lead" href="{% url 'learning_logs:topic' topic.id %}">{{ topic }}</a>
+          <small>
+            <a class="badge btn-warning badge-pill float-right" onclick="return confirm('Are you sure you want to delete this?')" href="{% url 'learning_logs:delete_topic' topic.id %}">Delete</a>
+          </small>
+            <span class="badge badge-primary badge-pill float-right mr-2">{{ user.total_post }}</span>
+          {% endbuttons %}
+
+        </h3>
+      {% empty %}
+        <h3 class="lead">No topics have been added yet.</h3>
+      {% endfor %}
+
+    </ul>
+
+  </div>
+</div>
+
+
+
+{% endblock content %}

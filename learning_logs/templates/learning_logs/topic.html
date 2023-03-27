@@ -1,0 +1,37 @@
+{% extends "learning_logs/base.html" %}
+
+
+{% block page_header %}
+<h3 class=display-4>{{ topic }} <a class="btn btn-sm btn-primary" href="{% url 'learning_logs:new_entry' topic.id %}" style="margin-top:10px">Add new entry</a>
+</h3>
+
+{% endblock page_header %}
+
+{% block content %}
+
+
+
+  {% for entry in entries %}
+    <div class="card mb-3">
+      <h4 class="card-header">
+        {{ entry.date_added|date:'M d, Y H:i' }}
+        <small><a class="badge badge-warning badge-pill float-right" href="{% url 'learning_logs:delete_entry' entry.id%}" onclick="return confirm('Are you sure you want to delete this?')">Delete</a>
+               <a class="badge badge-success badge-pill float-right mr-2" href="{% url 'learning_logs:edit_entry' entry.id %}">Edit Entry</a>
+        </small>
+      </h4>
+      <div class="card-body">
+        {{ entry.text|linebreaks }}
+      </div>
+  </div>
+  {% empty %}
+  <div class="jumbotron">
+    <h3 class="lead">There are no entries for this topic yet.</h3>
+  </div>
+
+  {% endfor %}
+
+
+
+
+
+{% endblock content %}

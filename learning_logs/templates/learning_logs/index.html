@@ -1,0 +1,17 @@
+{% extends "learning_logs/base.html" %}
+
+
+{% block content %}
+    <div class="jumbotron">
+      <h1 class="display-3">Track your 'attempt' at learning.</h1>
+
+      <p class="lead">Learning Log brought to you by desperation. Want to learn something new for a couple of weeks and then get bored and question life and repeat the cycle because "this time it'll be different", look no further, learning log will log your desperate attempt and even put a date on it, that way you can go back and read why you never made it :)</p>
+
+      {% if user.is_authenticated %}
+      {% else %}
+      <a class="btn btn-lg btn-primary" href="{% url 'users:register' %}" role="button">Register &raquo;</a>
+      {% endif %}
+
+    </div>
+
+{% endblock content %}
